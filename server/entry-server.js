@@ -67,7 +67,7 @@ function HomePage({ page }) {
           "a",
           {
             className: "postCard__linkBlock",
-            href: `${r}${post.category}/${post.postNum}/`,
+            href: `${r}posts/${post.fileNum}/`,
             "aria-label": `${post.title} 글 보기`,
             children: [
               /* @__PURE__ */ jsx("h2", { className: "postCard__title", children: post.title }),
@@ -96,14 +96,14 @@ function AboutPage({ page }) {
       /* @__PURE__ */ jsx("h1", { id: "about-title", className: "page__h1", children: "About" }),
       /* @__PURE__ */ jsxs("p", { className: "page__meta", children: [
         "React로 UI를 구성하고, 글은 ",
-        /* @__PURE__ */ jsx("code", { children: "blog/1.md" }),
+        /* @__PURE__ */ jsx("code", { children: "posts/1.md" }),
         " … 통일 번호로 두고 프론트매터 ",
         /* @__PURE__ */ jsx("code", { children: "category" }),
-        "(dev·notes·meta)로 구분하며, 빌드·미들웨어에서 HTML로 뽑은 뒤 ",
+        "(dev·notes·meta)로 분류만 표시하며, 빌드·미들웨어에서 HTML로 뽑은 뒤 ",
         /* @__PURE__ */ jsx("strong", { children: "하이드레이션" }),
-        "합니다. URL은",
-        /* @__PURE__ */ jsx("code", { children: "/dev/1/" }),
-        "처럼 유지하고, 링크는 디렉터리 형태로 둡니다."
+        "합니다.             글 URL은 ",
+        /* @__PURE__ */ jsx("code", { children: "/posts/N/" }),
+        " 형태로 통일하고, 링크는 디렉터리 형태로 둡니다."
       ] })
     ] }),
     /* @__PURE__ */ jsxs("section", { className: "page__section", children: [
@@ -132,7 +132,7 @@ function CategoryPage({ page }) {
           "a",
           {
             className: "postCard__linkBlock",
-            href: `${post.postNum}/`,
+            href: `../posts/${post.fileNum}/`,
             "aria-label": `${post.title} 글 보기`,
             children: [
               /* @__PURE__ */ jsx("h2", { className: "postCard__title", children: post.title }),
@@ -152,7 +152,7 @@ function PostPage({ page }) {
       /* @__PURE__ */ jsx("p", { className: "page__meta", children: data.date }),
       /* @__PURE__ */ jsx("h1", { id: "post-title", className: "page__h1", children: data.title }),
       /* @__PURE__ */ jsxs("p", { className: "page__meta postDetail__category", children: [
-        /* @__PURE__ */ jsx("a", { className: "textLink", href: "..", children: CATEGORY_LABELS[data.category] || data.category }),
+        /* @__PURE__ */ jsx("a", { className: "textLink", href: `${r}${data.category}/`, children: CATEGORY_LABELS[data.category] || data.category }),
         /* @__PURE__ */ jsx("span", { className: "postDetail__sep", children: " · " }),
         /* @__PURE__ */ jsx("a", { className: "textLink", href: r || "./", children: "목록" })
       ] })
