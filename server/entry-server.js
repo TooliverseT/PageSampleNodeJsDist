@@ -50,6 +50,9 @@ function homeDirHrefFromDepth(depth) {
   }
   return rootPrefixFromDepth(depth);
 }
+function postListHrefFromDepth(depth, fileNum) {
+  return `${rootPrefixFromDepth(depth)}posts/${fileNum}/`;
+}
 function HomePage({ page }) {
   const { data, active, depth } = page;
   const r = rootPrefixFromDepth(depth);
@@ -67,7 +70,7 @@ function HomePage({ page }) {
           "a",
           {
             className: "postCard__linkBlock",
-            href: `${r}posts/${post.fileNum}/`,
+            href: postListHrefFromDepth(depth, post.fileNum),
             "aria-label": `${post.title} 글 보기`,
             children: [
               /* @__PURE__ */ jsx("h2", { className: "postCard__title", children: post.title }),
@@ -132,7 +135,7 @@ function CategoryPage({ page }) {
           "a",
           {
             className: "postCard__linkBlock",
-            href: `../posts/${post.fileNum}/`,
+            href: postListHrefFromDepth(depth, post.fileNum),
             "aria-label": `${post.title} 글 보기`,
             children: [
               /* @__PURE__ */ jsx("h2", { className: "postCard__title", children: post.title }),
